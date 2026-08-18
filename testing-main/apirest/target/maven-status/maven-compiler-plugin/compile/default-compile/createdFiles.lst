@@ -1,0 +1,11 @@
+team08/apirest/services/GastoService.class
+team08/apirest/models/GastoModel.class
+team08/apirest/services/PredictionResponse.class
+team08/apirest/repositories/GastoRepository.class
+team08/apirest/services/UsuarioService.class
+team08/apirest/ApirestApplication.class
+team08/apirest/models/UsuarioModel.class
+team08/apirest/controllers/GastoController.class
+team08/apirest/repositories/UsuarioRepository.class
+team08/apirest/ServletInitializer.class
+team08/apirest/controllers/UsuarioController.class

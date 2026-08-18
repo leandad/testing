@@ -1,0 +1,10 @@
+/workspaces/testing/apirest/src/main/java/team08/apirest/ApirestApplication.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/ServletInitializer.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/controllers/GastoController.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/controllers/UsuarioController.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/models/GastoModel.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/models/UsuarioModel.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/repositories/GastoRepository.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/repositories/UsuarioRepository.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/services/GastoService.java
+/workspaces/testing/apirest/src/main/java/team08/apirest/services/UsuarioService.java
