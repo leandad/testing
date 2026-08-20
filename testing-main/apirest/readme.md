@@ -1,7 +1,7 @@
 # API REST - Sistema de Alerta Financiera Temprana
 
 Proyecto backend en Spring Boot para gestionar usuarios, gastos financieros y evaluación de riesgo financiero. La solución está pensada para calcular señales tempranas de salud económica, clasificar perfiles financieros y facilitar la gestión de transacciones asociadas a cada cliente.
-
+s
 ## Descripción general
 
 La API permite:
