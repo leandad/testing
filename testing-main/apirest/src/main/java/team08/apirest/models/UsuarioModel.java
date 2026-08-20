@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -30,30 +31,39 @@ public class UsuarioModel{
     private String email;
 
     @Column(name = "ingreso_mensual_fijo")
+    @Convert(converter = FormattedLongConverter.class)
     private Long ingresoMensualFijo;
 
     @Column(name = "ingreso_mensual_variable")
+    @Convert(converter = FormattedLongConverter.class)
     private Long ingresoMensualVariable;
 
     @Column(name = "ingreso_mensual")
+    @Convert(converter = FormattedLongConverter.class)
     private Long ingresoMensual;
 
     @Column(name = "gastos_esenciales_mensuales")
+    @Convert(converter = FormattedLongConverter.class)
     private Long gastosEsencialesMensuales;
 
     @Column(name = "gastos_no_esenciales_mensuales")
+    @Convert(converter = FormattedLongConverter.class)
     private Long gastosNoEsencialesMensuales;
 
     @Column(name = "gastos_totales_del_mes")
+    @Convert(converter = FormattedLongConverter.class)
     private Long gastosTotalesDelMes;
 
     @Column(name = "cuotas_mensuales_deuda")
+    @Convert(converter = FormattedLongConverter.class)
     private Long cuotasMensualesDeuda;
 
     @Column(name = "ahorro_mensual")
+    @Convert(converter = FormattedLongConverter.class)
     private Long ahorroMensual;
 
     @Column(name = "ahorro_total")
+    @Convert(converter = FormattedLongConverter.class)
     private Long ahorroTotal;
 
     @Column(name = "ratio_ahorro_neto")
@@ -81,6 +91,7 @@ public class UsuarioModel{
     private String modalidadPagoTarjeta;
 
     @Column(name = "ahorro_previo")
+    @Convert(converter = FormattedLongConverter.class)
     private Long ahorroPrevio;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -101,11 +112,19 @@ public class UsuarioModel{
         this.modalidadPagoTarjeta = modalidadPagoTarjeta;
     }
 
+    public void setModalidad_pago_tarjeta(String modalidadPagoTarjeta){
+        this.modalidadPagoTarjeta = modalidadPagoTarjeta;
+    }
+
     public Long getAhorros(){
         return ahorroPrevio;
     }
 
     public void setAhorro_previo(Long ahorroPrevio){
+        this.ahorroPrevio = ahorroPrevio;
+    }
+
+    public void setAhorros(Long ahorroPrevio){
         this.ahorroPrevio = ahorroPrevio;
     }
 

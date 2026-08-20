@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,7 +16,8 @@ public class GastoService {
     @Autowired
     private GastoRepository gastoRepository;
 
-    private final String PYTHON_ML_URL = ""; // URL de tu API de Python
+    @Value("${python.ml.url:}")
+    private String pythonMlUrl;
 
     // Obtener todos los gastos
     public List<GastoModel> obtenerGastos() {
@@ -48,12 +50,16 @@ public class GastoService {
     }
 
     public GastoModel guardarYClasificarGasto(GastoModel gasto) {
+        if (pythonMlUrl == null || pythonMlUrl.isBlank()) {
+            return gastoRepository.save(gasto);
+        }
+
         try {
             // Modelo Gasto
             RestTemplate restTemplate = new RestTemplate();
             
             // Respuesta de APi Python
-            PredictionResponse respuesta = restTemplate.postForObject(PYTHON_ML_URL, gasto, PredictionResponse.class);
+            PredictionResponse respuesta = restTemplate.postForObject(pythonMlUrl, gasto, PredictionResponse.class);
 
             if (respuesta != null && respuesta.getCategoriaPredicha() != null) {
                 // Se asigna la categoria predicha

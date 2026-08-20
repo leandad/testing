@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,8 +16,8 @@ public class UsuarioService{
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    // URL Script de Python
-    private final String PYTHON_SERVICE_URL = "http://localhost:5000/calcular-finanzas";
+    @Value("${python.service.url:}")
+    private String pythonServiceUrl;
 
     // LISTA COMPLETA DE USUARIOS
     public ArrayList<UsuarioModel> obtenerUsuarios(){
@@ -24,11 +25,15 @@ public class UsuarioService{
     }
     // AGREGAR UN NUEVO USUARIO
     public UsuarioModel guardarUsuario(UsuarioModel usuario){
+        if (pythonServiceUrl == null || pythonServiceUrl.isBlank()) {
+            return usuarioRepository.save(usuario);
+        }
+
         RestTemplate restTemplate = new RestTemplate();
         
         try {
             // ENVIO AL USUARIO 
-            UsuarioModel usuarioCalculado = restTemplate.postForObject(PYTHON_SERVICE_URL, usuario, UsuarioModel.class);
+            UsuarioModel usuarioCalculado = restTemplate.postForObject(pythonServiceUrl, usuario, UsuarioModel.class);
             
             // SI ES EXITOSO, SE GUARDAN LOS DATOS
             if (usuarioCalculado != null) {
